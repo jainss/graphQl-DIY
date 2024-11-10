@@ -1,11 +1,11 @@
 const express = require('express');
 const app = express();
 const { graphqlHTTP } = require('express-graphql');
-const schema = require('./schema');
+const schema = require('./Schema/index');
 
-const PORT = 3000;
+const PORT = 3308;
 
-require('./modules/index');
+require('./module/index');
 
 app.use(express.json());
 
@@ -16,9 +16,9 @@ app.use('/graphql',
    })
 );
 
-app.listen(PORT, (error) => {
-    if (!error)
+app.listen(PORT, (e) => {
+    if (!e)
         console.log("Server is Successfully Running, and App is listening on port " + PORT)
     else
-        console.log("Error occurred, server can't start", error);
+        console.log("Error occurred, server can't start", e);
 });

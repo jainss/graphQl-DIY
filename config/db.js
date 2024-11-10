@@ -1,19 +1,15 @@
-const { Sequelize } = require('sequelize');
+const Sequelize = require('sequelize');
 
-// Create a new instance of Sequelize for SQLite
-const sequelize = new Sequelize({
-  dialect: 'sqlite',               // Use SQLite as the database dialect
-  storage: './database.sqlite',    // Path to the SQLite database file
+const sequelize = new Sequelize('graphqldb','root', null,{
+  host:'localhost',
+  dialect:'mysql',
+  logging: false
 });
 
-// Test the database connection
-sequelize.authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.');
-  })
-  .catch((err) => {
-    console.error('Unable to connect to the database:', err);
-  });
+sequelize.authenticate().then(()=>{
+  console.log("DB is connected");
+}).catch((error)=>{
+  console.log(`there is some error called ${error}`);
+});
 
-// Export the Sequelize instance for use in other parts of the app
 module.exports = sequelize;
