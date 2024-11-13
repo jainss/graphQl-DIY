@@ -9,9 +9,14 @@ require('./module/index');
 
 app.use(express.json());
 
+var root = {
+    
+}
+
 app.use('/graphql', 
     graphqlHTTP({
       schema,
+      rootValue: root,
       graphiql:true
    })
 );
