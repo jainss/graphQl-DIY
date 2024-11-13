@@ -11,7 +11,6 @@ const Resolvequery = new GraphQLObjectType({
   },
 });
 
-
 const Mutation = new GraphQLObjectType({
   name: 'mutation',
   fields:{

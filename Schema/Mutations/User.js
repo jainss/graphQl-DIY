@@ -1,4 +1,3 @@
-const db = require('../../module');
 const UserType = require('../TypeDefs/UserType');
 const graphql = require('graphql')
 const {GraphQLString, GraphQLInt} = graphql
@@ -10,8 +9,10 @@ module.exports.USER_ADD = {
         email: {type: GraphQLString},
         status: {type: GraphQLString}
     },
-    resolve(parent, args){
-        db.users.create({name: args.name, email:args.email, status: args.status });
+    resolve: async(parent, args, context)=>{
+        console.log(await context())
+        const {dbconfig} = parent
+        dbconfig.users.create({name: args.name, email:args.email, status: args.status });
         return args
     }
 }
